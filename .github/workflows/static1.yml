@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm i --registry https://registry.npm.taobao.org
+      - run: npm i --registry https://registry.npmmirror.com
       - run: npm run build:prod
       - name: Setup Pages
         uses: actions/configure-pages@v3
