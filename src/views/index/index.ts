@@ -18,7 +18,8 @@ const closeLoading = function(){
     const loadingEl = document.querySelector('.loading') as HTMLDivElement
     loadingEl.classList.add('hide')
     setTimeout(()=>{
-        loadingEl.remove()
+        loadingEl.remove();
+        
     },200)
 }
 
@@ -50,38 +51,38 @@ const heartScale = function(){
 heartScale()
 
 // 监听时间
-const flowTimeListen = function(){
-    const flow = [
-        new Date('2021-05-01 00:00:00').getTime(),
-        new Date('2021-05-01 08:00:00').getTime(),
-        new Date('2021-05-01 11:00:00').getTime(),
-        new Date('2021-05-01 12:00:00').getTime(),
-        new Date('2021-05-01 14:00:00').getTime(),
-        new Date('2021-05-01 16:00:00').getTime(),
-        new Date('2021-05-02 00:00:00').getTime(),
-    ]
-    setInterval(()=>{
-        const now = Date.now()
-        const steps = document.querySelectorAll('.step')
-        let active = false
-        for(let i = steps.length-1;i>=0;i--){
-            const stepEl = steps[i];
-            const stepMaxTime = flow[i]
-            stepEl.classList.remove('active')
-            if(active){
-                if(!stepEl.classList.contains('past')){
-                    stepEl.classList.add('past')
-                }
-            }else if(now>stepMaxTime){
-                if(!stepEl.classList.contains('active')){
-                    stepEl.classList.add('active')
-                    active = true
-                }
-            }
-        }
-    },1000)
-}
-flowTimeListen()
+// const flowTimeListen = function(){
+//     const flow = [
+//         new Date('2021-05-01 00:00:00').getTime(),
+//         new Date('2021-05-01 08:00:00').getTime(),
+//         new Date('2021-05-01 11:00:00').getTime(),
+//         new Date('2021-05-01 12:00:00').getTime(),
+//         new Date('2021-05-01 14:00:00').getTime(),
+//         new Date('2021-05-01 16:00:00').getTime(),
+//         new Date('2021-05-02 00:00:00').getTime(),
+//     ]
+//     setInterval(()=>{
+//         const now = Date.now()
+//         const steps = document.querySelectorAll('.step')
+//         let active = false
+//         for(let i = steps.length-1;i>=0;i--){
+//             const stepEl = steps[i];
+//             const stepMaxTime = flow[i]
+//             stepEl.classList.remove('active')
+//             if(active){
+//                 if(!stepEl.classList.contains('past')){
+//                     stepEl.classList.add('past')
+//                 }
+//             }else if(now>stepMaxTime){
+//                 if(!stepEl.classList.contains('active')){
+//                     stepEl.classList.add('active')
+//                     active = true
+//                 }
+//             }
+//         }
+//     },1000)
+// }
+// flowTimeListen()
 
 // 资源加载完成时移除loading
 window.addEventListener('load',()=>{
@@ -94,7 +95,8 @@ window.addEventListener('load',()=>{
         },minDuration - (endTime-startTime))
     }else{
         closeLoading()
-        startElementInSight()
+        startElementInSight()  
+
     }
 })
 
@@ -170,7 +172,7 @@ if(query.includes('share')){
 
 
 wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
-    const title = '梁俊&韦晓霞婚礼邀请函'
+    const title = '赖龙辉&廖永萍婚礼邀请函'
     const link = 'https://blinkjun.github.io/wedding-invite/'
     const imageUrl = 'https://blinkjun.github.io/wedding-invite/img/HRQ11517.jpg'
     const desc = '欢迎您来参加我们的婚礼'
@@ -233,6 +235,7 @@ const musicBtn = document.querySelector('.play-toggle')
 const btnPlay = musicBtn.querySelector('.play')
 const btnMute = musicBtn.querySelector('.mute')
 const player = document.querySelector('#audio') as HTMLAudioElement
+
 musicBtn.addEventListener('click',()=>{
     if(player.paused){
         btnPlay.classList.remove('hide')
@@ -248,5 +251,13 @@ document.addEventListener('WeixinJSBridgeReady',()=>{
     player.play()
     btnPlay.classList.remove('hide')
     btnMute.classList.add('hide')
-})
+});
+
+(function(){
+    player.click();
+})();
+
+
+
+
 
