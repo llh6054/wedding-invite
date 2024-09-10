@@ -11,7 +11,7 @@ for (var dev in ifaces) {
     }
   });
 }
-const locationIp = Object.values(iptable)[0]
+const locationIp = Object.values(iptable)[1]
 
 
 // 页面配置

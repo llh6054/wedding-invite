@@ -51,38 +51,37 @@ const heartScale = function(){
 heartScale()
 
 // 监听时间
-// const flowTimeListen = function(){
-//     const flow = [
-//         new Date('2021-05-01 00:00:00').getTime(),
-//         new Date('2021-05-01 08:00:00').getTime(),
-//         new Date('2021-05-01 11:00:00').getTime(),
-//         new Date('2021-05-01 12:00:00').getTime(),
-//         new Date('2021-05-01 14:00:00').getTime(),
-//         new Date('2021-05-01 16:00:00').getTime(),
-//         new Date('2021-05-02 00:00:00').getTime(),
-//     ]
-//     setInterval(()=>{
-//         const now = Date.now()
-//         const steps = document.querySelectorAll('.step')
-//         let active = false
-//         for(let i = steps.length-1;i>=0;i--){
-//             const stepEl = steps[i];
-//             const stepMaxTime = flow[i]
-//             stepEl.classList.remove('active')
-//             if(active){
-//                 if(!stepEl.classList.contains('past')){
-//                     stepEl.classList.add('past')
-//                 }
-//             }else if(now>stepMaxTime){
-//                 if(!stepEl.classList.contains('active')){
-//                     stepEl.classList.add('active')
-//                     active = true
-//                 }
-//             }
-//         }
-//     },1000)
-// }
-// flowTimeListen()
+const flowTimeListen = function(){
+    const flow = [
+        new Date('2024-10-02 00:00:00').getTime(),
+        new Date('2024-10-02 08:00:00').getTime(),
+        new Date('2024-10-02 09:00:00').getTime(),
+        new Date('2024-10-02 10:00:00').getTime(),
+        new Date('2024-10-02 11:00:00').getTime(),
+        new Date('2024-10-02 12:00:00').getTime(),
+    ]
+    setInterval(()=>{
+        const now = Date.now()
+        const steps = document.querySelectorAll('.step')
+        let active = false
+        for(let i = steps.length-1;i>=0;i--){
+            const stepEl = steps[i];
+            const stepMaxTime = flow[i]
+            stepEl.classList.remove('active')
+            if(active){
+                if(!stepEl.classList.contains('past')){
+                    stepEl.classList.add('past')
+                }
+            }else if(now>stepMaxTime){
+                if(!stepEl.classList.contains('active')){
+                    stepEl.classList.add('active')
+                    active = true
+                }
+            }
+        }
+    },1000)
+}
+flowTimeListen()
 
 // 资源加载完成时移除loading
 window.addEventListener('load',()=>{
@@ -148,27 +147,28 @@ const startElementInSight = ()=>{
 }
 const query = location.search
 const initWxConfig = function(res:any){
-    const {appId,noncestr,signature,timestamp} = res.data.data
+    const {appId,nonceStr,signature,timestamp} = res.data.data
+
     wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: appId, // 必填，公众号的唯一标识
         timestamp: timestamp, // 必填，生成签名的时间戳
-        nonceStr: noncestr, // 必填，生成签名的随机串
+        nonceStr: nonceStr, // 必填，生成签名的随机串
         signature: signature,// 必填，签名
         jsApiList: [
-            'updateTimelineShareData',
-            'updateAppMessageShareData',
+            // 'updateTimelineShareData',
+            // 'updateAppMessageShareData',
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
             'openLocation'
         ] // 必填，需要使用的JS接口列表
     });
+  
 }
-if(query.includes('share')){
-    axios.get(`http://sunrise.tojike.com/hawk-api/wechat/signature-test?url=${encodeURIComponent(location.href)}`).then(initWxConfig)
-}else{
-    axios.get(`http://sunrise.tojike.com/hawk-api/wechat/signature?url=${encodeURIComponent(location.href)}`).then(initWxConfig)
-}
+
+axios.get(`https://llh.stelaino.top/wechat/signature-test?url=https://llh.stelaino.top/`).then(initWxConfig)
+
+
 
 
 wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
@@ -200,34 +200,47 @@ wx.ready(function () {      //需在用户可能点击分享按钮前就先调�
         imgUrl: imageUrl // 分享图标
     });
 });
+
+
+document.querySelector('.address-liao').addEventListener('click',()=>{
+    wx.openLocation({
+        latitude: 24.880854, // 纬度，浮点数，范围为90 ~ -90
+        longitude: 114.845588, // 经度，浮点数，范围为180 ~ -180。
+        name: '龙南市新欧段', // 位置名
+        address: '江西省赣州市龙南市新欧段与农水段交叉口东南40米，新华商店前行300米', // 地址详情说明
+        scale: 15, // 地图缩放级别,整型值,范围从1~28。默认为最大
+        infoUrl: 'https://map.baidu.com/poi/%E6%96%B0%E5%8D%8E%E5%95%86%E5%BA%97/@12784483.325065985,2849589.618896227,11.2z?uid=43ea272e4b7e5fa7465726cb&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl' // 在查看位置界面底部显示的超链接,可点击跳转
+    });
+})
+
 document.querySelector('.address-jun').addEventListener('click',()=>{
     wx.openLocation({
-        latitude: 23.330177, // 纬度，浮点数，范围为90 ~ -90
-        longitude: 108.795106, // 经度，浮点数，范围为180 ~ -180。
-        name: '宾阳县新圩镇金恩药店', // 位置名
-        address: '宾阳县新圩镇金恩药店（邮政银行对面）', // 地址详情说明
+        latitude: 24.910531, // 纬度，浮点数，范围为90 ~ -90
+        longitude: 114.82157, // 经度，浮点数，范围为180 ~ -180。
+        name: '龙南市凯利亚德酒店', // 位置名
+        address: '凯利亚德酒店(赣州龙南世界客家民俗文化城店)--金水大道500号', // 地址详情说明
         scale: 15, // 地图缩放级别,整型值,范围从1~28。默认为最大
-        infoUrl: 'https://map.baidu.com/poi/%E6%96%B0%E5%9C%A9%E6%9D%8F%E6%9E%97%E6%98%A5%E8%8D%AF%E5%BA%97/@12111873.125,2655653,19z?uid=6c4c0c802a6691314e776edd&ugc_type=3&ugc_ver=1&device_ratio=1&compat=1&querytype=detailConInfo&da_src=shareurl' // 在查看位置界面底部显示的超链接,可点击跳转
+        infoUrl: 'https://map.baidu.com/poi/%E5%87%AF%E9%87%8C%E4%BA%9A%E5%BE%B7%E9%85%92%E5%BA%97(%E8%B5%A3%E5%B7%9E%E9%BE%99%E5%8D%97%E4%B8%96%E7%95%8C%E5%AE%A2%E5%AE%B6%E6%B0%91%E4%BF%97%E6%96%87%E5%8C%96%E5%9F%8E%E5%BA%97)/@12782017.655,2846629.15,19z?uid=d662f5a40a0fe937283a9fdf&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl' // 在查看位置界面底部显示的超链接,可点击跳转
     });
 })
 document.querySelector('.address-res').addEventListener('click',()=>{
     wx.openLocation({
-        latitude: 23.215273, // 纬度，浮点数，范围为90 ~ -90
-        longitude: 108.814324, // 经度，浮点数，范围为180 ~ -180。
-        name: '宾阳县蒙记食府', // 位置名
-        address: '南宁市宾阳县思远路与金和路交叉路口往西南约100米(祥和小区北侧)', // 地址详情说明
+        latitude: 24.638487, // 纬度，浮点数，范围为90 ~ -90
+        longitude: 114.651071, // 经度，浮点数，范围为180 ~ -180。
+        name: '杨太马坪祖厅', // 位置名
+        address: '赣州市龙南市杨村镇杨太村马坪祖厅--杨太村委会进入沿马路直行三百米', // 地址详情说明
         scale: 15, // 地图缩放级别,整型值,范围从1~28。默认为最大
-        infoUrl: 'https://map.baidu.com/poi/%E8%92%99%E8%AE%B0%E9%A3%9F%E5%BA%9C/@12114002.085,2641844.37,19z?uid=61e1a918549ab543a0acc479&ugc_type=3&ugc_ver=1&device_ratio=1&compat=1&querytype=detailConInfo&da_src=shareurl' // 在查看位置界面底部显示的超链接,可点击跳转
+        infoUrl: 'https://map.baidu.com/poi/%E9%BE%99%E5%8D%97%E5%8E%BF%E6%9D%A8%E6%9D%91%E9%95%87%E6%9D%A8%E5%A4%A7%E6%9D%91%E6%B0%91%E5%A7%94%E5%91%98%E4%BC%9A/@12762961.883133767,2815583.0574614783,12.82z?uid=745e06ae13e510e7932ca3fe&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl' // 在查看位置界面底部显示的超链接,可点击跳转
     });
 })
 document.querySelector('.address-sunrise').addEventListener('click',()=>{
     wx.openLocation({
-        latitude: 23.25911, // 纬度，浮点数，范围为90 ~ -90
-        longitude: 108.820465, // 经度，浮点数，范围为180 ~ -180。
-        name: '宾阳县北街', // 位置名
-        address: '（勒马红绿灯西环路益霖彩砖厂路口进去200米）', // 地址详情说明
+        latitude: 24.637375, // 纬度，浮点数，范围为90 ~ -90
+        longitude: 114.651718, // 经度，浮点数，范围为180 ~ -180。
+        name: '杨太马坪', // 位置名
+        address: '赣州市龙南市杨村镇杨太村马坪', // 地址详情说明
         scale: 15, // 地图缩放级别,整型值,范围从1~28。默认为最大
-        infoUrl: 'http://weixin.qq.com' // 在查看位置界面底部显示的超链接,可点击跳转
+        infoUrl: 'https://map.baidu.com/poi/%E9%BE%99%E5%8D%97%E5%8E%BF%E6%9D%A8%E6%9D%91%E9%95%87%E6%9D%A8%E5%A4%A7%E6%9D%91%E6%B0%91%E5%A7%94%E5%91%98%E4%BC%9A/@12762961.883133767,2815583.0574614783,12.82z?uid=745e06ae13e510e7932ca3fe&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl' // 在查看位置界面底部显示的超链接,可点击跳转
     });
 })
 
@@ -253,9 +266,7 @@ document.addEventListener('WeixinJSBridgeReady',()=>{
     btnMute.classList.add('hide')
 });
 
-(function(){
-    player.click();
-})();
+
 
 
 
