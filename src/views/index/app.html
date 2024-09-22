@@ -12,6 +12,57 @@
     // VConsole 默认会挂载到 `window.VConsole` 上
     var vConsole = new window.VConsole();
     </script> -->
+    <style>
+        /* 弹框的默认样式：隐藏 */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); 
+}
+
+/* 弹框图片样式 */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%; /* 初始宽度设置为屏幕宽度的80% */
+    max-width: 90%;
+    max-height: 90%; /* 保持最大高度为80%以避免图片超出屏幕 */
+    transition: transform 0.25s ease; /* 添加过渡效果 */
+}
+
+/* 关闭按钮样式 */
+#close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 图片缩放功能 */
+.zoomable {
+    transform-origin: center center;
+}
+
+/* 放大时 */
+.zoom-in {
+    transform: scale(1.5); /* 放大1.5倍 */
+}
+
+/* 缩小时 */
+.zoom-out {
+    transform: scale(0.75); /* 缩小至75% */
+}
+       </style>
 </head>
 <body>
     <div class="loading" >
@@ -153,7 +204,7 @@
             </div>
             <div class="group-0" >
                 <div class="frame-box-1 ready-ani" >
-                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3534.webp" alt="">
+                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3534.webp" alt="" class="thumbnail">
                 </div>
                 <p class="tips ready-ani" >爱不是彼此对视，而是共同眺望远方</p>
                 <div class="line ready-ani" ></div>
@@ -168,10 +219,10 @@
                 <div class="border" ></div>
                 <div class="pic-box" >
                     <div class="frame-box-2 ready-ani" >
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3610.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3610.webp" alt="" class="thumbnail">
                     </div>
                     <div class="frame-box-3 ready-ani" >
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3620.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3620.webp" alt="" class="thumbnail">
                     </div>
                 </div>
             </div>
@@ -186,13 +237,13 @@
                 </div>
                 <div class="pic-box" >
                     <div class="frame-box-2 ready-ani" >
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3761.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3761.webp" alt="" class="thumbnail">
                     </div>
                     <div class="frame-box-3 group-frame-3 ready-ani" >
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3769.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3769.webp" alt="" class="thumbnail">
                     </div>
                     <div class="frame-box-3 group-frame-4 ready-ani" >
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3780.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3780.webp" alt="" class="thumbnail">
                     </div>
                 </div>
             </div>
@@ -207,13 +258,13 @@
                     <p class="group-2-title-4 ready-ani" >AND LIVE WITHOUT SHAME</p>
                 </div>
                 <div class="frame-box-5 ready-ani" >
-                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3749.webp" alt="">
+                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3749.webp" alt="" class="thumbnail">
                 </div>
                 <div class="frame-box-6 ready-ani" >
-                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3734.webp" alt="">
+                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3734.webp" alt="" class="thumbnail">
                 </div>
                 <div class="frame-box-7 ready-ani" >
-                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3794.webp" alt="">
+                    <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3794.webp" alt="" class="thumbnail">
                 </div>
             </div>
             <p class="day-day ready-ani" >
@@ -222,34 +273,34 @@
             <div class="swiper-container frame-box-4">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3199.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3199.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3285.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3285.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3223.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3223.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3232.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3232.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3243.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3243.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3300.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3300.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3322.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3322.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3602.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3602.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3571.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3571.webp" alt="" class="thumbnail">
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3774.webp" alt="">
+                        <img src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/9Y9A3774.webp" alt="" class="thumbnail">
                     </div>
                 </div>
                 <div class="swiper-button-prev"></div>
@@ -286,6 +337,11 @@
         <img src="<%= require('@/images/music.svg')%>" class="play hide" alt="">
         <img src="<%= require('@/images/mute.svg')%>" class="mute " alt="">
     </div>
+      <!-- 弹框容器 -->
+      <div id="modal" class="modal">
+        <span id="close">&times;</span>
+        <img class="modal-content zoomable" id="fullImage">
+    </div>
     <audio src="https://llh6054p.oss-cn-guangzhou.aliyuncs.com/wedding/bg.mp3" id="audio" loop ></audio>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
     <script>
@@ -306,6 +362,58 @@
             },
             spaceBetween:30
         }) ;
+
+        const modal = document.getElementById('modal');
+const fullImage = document.getElementById('fullImage');
+const closeBtn = document.getElementById('close');
+const thumbnails = document.querySelectorAll('.thumbnail');
+
+// 初始缩放等级
+let zoomLevel = 1;
+
+        thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', function() {
+        const largeUrl = this.getAttribute('src'); // 获取对应的大图URL
+        if (largeUrl) {
+            modal.style.display = 'block';
+            fullImage.src = largeUrl; // 将大图URL赋值给弹框中的图片
+            fullImage.style.width = '90%'; // 设置图片宽度为屏幕的80%
+            fullImage.style.transform = `scale(${zoomLevel})`; // 初始缩放比例
+        }
+    });
+});
+
+closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+    zoomLevel = 1; // 重置缩放等级
+    fullImage.style.transform = `scale(${zoomLevel})`; // 重置缩放
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+        zoomLevel = 1; // 重置缩放等级
+        fullImage.style.transform = `scale(${zoomLevel})`; // 重置缩放
+    }
+});
+
+// 添加鼠标滚轮缩放功能
+fullImage.addEventListener('wheel', function(event) {
+    event.preventDefault(); // 阻止默认滚动行为
+
+    if (event.deltaY < 0) {
+        // 放大
+        zoomLevel += 0.1;
+    } else {
+        // 缩小
+        zoomLevel -= 0.1;
+        if (zoomLevel < 0.5) {
+            zoomLevel = 0.5; // 限制最小缩放为0.5倍
+        }
+    }
+    
+    fullImage.style.transform = `scale(${zoomLevel})`;
+});
     </script>
 </body>
 </html>
